@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import ParticleBackgroundWrapper from '@/components/ParticleBackgorund/ParticleBackgorundWrapper';
+import ParticleBackgroundWrapper from '@/components/ParticleBackgorund/components/ParticleBackgorundWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 

@@ -3,7 +3,7 @@
 
 import dynamic from 'next/dynamic';
 
-const ParticleBackground = dynamic(() => import('./ParticleBackground'), {
+const ParticleBackground = dynamic(() => import('../index'), {
   ssr: false,
 });
 
