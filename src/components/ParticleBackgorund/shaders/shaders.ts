@@ -20,25 +20,25 @@ export const vertexShader = `
   vec3 calculateGravityEffect(vec3 particlePos, vec3 sourcePos, float intensity) {
     vec3 direction = sourcePos - particlePos;
     float distance = length(direction);
-    float gravityRadius = 0.8;
-    float gravityStrength = 0.15;
+    float gravityRadius = 1.0;
+    float gravityStrength = 0.1;
     
     if (distance < gravityRadius) {
       float force = (1.0 - distance / gravityRadius);
-      force = pow(force, 2.0) * gravityStrength * intensity;
+      force = pow(force, 1.0) * gravityStrength * intensity;
       return normalize(direction) * force;
     }
     return vec3(0.0);
   }
   
   vec3 addTurbulence(vec3 pos, float time) {
-    float speed = 0.5;
-    float scale = 0.1;
+    float speed = 0.01;
+    float scale = 0.5;
     return vec3(
       sin(pos.x * 2.0 + time * speed) * scale,
       cos(pos.y * 2.0 + time * speed) * scale,
       sin(pos.z * 2.0 + time * speed) * scale
-    ) * 0.02;
+    ) * 0.04;
   }
   
   void main() {

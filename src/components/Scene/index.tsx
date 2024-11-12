@@ -30,7 +30,7 @@ export default function Scene() {
   } = useModelAnimations();
 
   const [cameraResult, setCameraResult] = useState<ReturnType<typeof setupModelCamera> | null>(null);
-
+  console.log(cameraResult);
   const clockRef = useRef(new Clock());
   const frameIdRef = useRef<number>();
 

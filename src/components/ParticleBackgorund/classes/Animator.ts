@@ -1,6 +1,7 @@
-// src/components/ParticleBackground/classes/animator.ts
+// src/components/ParticleBackground/classes/Animator.ts
 import * as THREE from 'three';
 import type { SceneObjects } from '../types/types';
+import { PerformanceMonitor } from './PerformanceMonitor';
 
 export const LIGHT_COLORS = [
   0xff5500, // More saturated orange
@@ -14,10 +15,13 @@ export class Animator {
   private rotationSpeed: THREE.Vector3;
   private particleSystem: THREE.Points | null = null;
   private time: number = 0;
+  private frameCount: number = 0;
+  private performanceMonitor: PerformanceMonitor;
 
   constructor(sceneObjects: SceneObjects) {
     this.sceneObjects = sceneObjects;
     this.rotationSpeed = new THREE.Vector3(0.0002, 0.0001, 0.0003);
+    this.performanceMonitor = new PerformanceMonitor(sceneObjects.renderer);
 
     this.sceneObjects.scene.traverse((object) => {
       if (object instanceof THREE.Points) {
@@ -36,12 +40,16 @@ export class Animator {
     if (this.frameId !== null) {
       cancelAnimationFrame(this.frameId);
     }
+    this.performanceMonitor.dispose();
   }
 
   private animate() {
     this.frameId = requestAnimationFrame(this.animate);
+    this.frameCount++;
 
-    this.time += 0.016;
+    this.performanceMonitor.startFrame();
+
+    this.time += 0.001;
 
     if (this.sceneObjects.shaderMaterial) {
       this.sceneObjects.shaderMaterial.uniforms.time.value = this.time;
@@ -75,6 +83,16 @@ export class Animator {
 
     // Используем EffectComposer вместо прямого рендера
     this.sceneObjects.postProcessing.render();
+
+    this.performanceMonitor.endFrame();
+
+    // Анализируем производительность каждые 100 кадров
+    if (this.frameCount % 100 === 0) {
+      const analysis = this.performanceMonitor.analyzePerformance();
+      if (analysis.issues.length > 0) {
+        console.log('Performance Analysis:', analysis);
+      }
+    }
   }
 
   setRotationSpeed(x: number, y: number, z: number) {

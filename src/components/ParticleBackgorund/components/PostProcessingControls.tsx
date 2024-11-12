@@ -30,7 +30,7 @@ export default function PostProcessingControls({ postProcessing }: PostProcessin
                 min='0'
                 max='5'
                 step='0.1'
-                defaultValue='2.5'
+                defaultValue='0'
                 onChange={(e) => postProcessing.setBloomIntensity(parseFloat(e.target.value))}
                 className='w-full'
               />
@@ -42,7 +42,7 @@ export default function PostProcessingControls({ postProcessing }: PostProcessin
                 min='0'
                 max='1'
                 step='0.01'
-                defaultValue='0.6'
+                defaultValue='0'
                 onChange={(e) => postProcessing.setBloomRadius(parseFloat(e.target.value))}
                 className='w-full'
               />
@@ -54,7 +54,7 @@ export default function PostProcessingControls({ postProcessing }: PostProcessin
                 min='0'
                 max='1'
                 step='0.01'
-                defaultValue='0.4'
+                defaultValue='0'
                 onChange={(e) => postProcessing.setBloomThreshold(parseFloat(e.target.value))}
                 className='w-full'
               />
@@ -68,7 +68,7 @@ export default function PostProcessingControls({ postProcessing }: PostProcessin
               <label className='inline-flex items-center'>
                 <input
                   type='checkbox'
-                  defaultChecked={true}
+                  defaultChecked={false}
                   onChange={(e) => postProcessing.setFilmEnabled(e.target.checked)}
                   className='mr-2'
                 />
@@ -82,7 +82,7 @@ export default function PostProcessingControls({ postProcessing }: PostProcessin
                 min='0'
                 max='1'
                 step='0.01'
-                defaultValue='0.35'
+                defaultValue='0'
                 onChange={(e) => postProcessing.setFilmNoise(parseFloat(e.target.value))}
                 className='w-full'
               />
@@ -94,7 +94,7 @@ export default function PostProcessingControls({ postProcessing }: PostProcessin
                 min='0'
                 max='1'
                 step='0.01'
-                defaultValue='0.025'
+                defaultValue='0'
                 onChange={(e) => postProcessing.setFilmScanlines(parseFloat(e.target.value))}
                 className='w-full'
               />

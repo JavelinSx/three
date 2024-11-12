@@ -5,12 +5,9 @@ import {
   DirectionalLight,
   DirectionalLightHelper,
   Object3D,
-  Material,
   MeshStandardMaterial,
   Color,
   Vector3,
-  SpotLight,
-  PointLight,
   HemisphereLight,
 } from 'three';
 
@@ -118,6 +115,7 @@ export class Lights {
   public updateModelLighting(model: Object3D): void {
     model.traverse((object: Object3D) => {
       if ('material' in object) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const obj = object as any;
         if (obj.material && obj.material instanceof MeshStandardMaterial) {
           const material = obj.material as MeshStandardMaterial;

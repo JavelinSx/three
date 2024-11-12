@@ -18,6 +18,7 @@ export function useModelAnimations() {
 
   const setupAnimations = useCallback((model: Object3D) => {
     console.log('Setting up model animations');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const animations = (model as any).animations || [];
 
     if (animations.length > 0) {
@@ -41,7 +42,8 @@ export function useModelAnimations() {
 
       // Добавляем обработчик завершения анимаций
       mixer.addEventListener('finished', () => {
-        const allFinished = actions.every((action) => action.time >= action.getClip().duration);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const allFinished = actions.every((action: any) => action.time >= action.getClip().duration);
         if (allFinished) {
           console.log('All animations finished');
           setIsAnimating(false);

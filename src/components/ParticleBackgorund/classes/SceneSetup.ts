@@ -50,7 +50,7 @@ function createShaderMaterial(lightGroups: LightGroup[]): THREE.ShaderMaterial {
 }
 
 function createPointCloud(material: THREE.ShaderMaterial): THREE.Points {
-  const particleCount = 100000;
+  const particleCount = 200000;
   const positions = new Float32Array(particleCount * 3);
 
   // Создаем буфер позиций
@@ -90,7 +90,7 @@ export function createParticleSystem(container: HTMLDivElement): SceneObjects {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
 
-  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 10);
+  const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 10);
   camera.position.set(0, 0, 0.5);
 
   const renderer = new THREE.WebGLRenderer({

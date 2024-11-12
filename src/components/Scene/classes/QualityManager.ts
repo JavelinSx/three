@@ -107,7 +107,9 @@ export class QualityManager {
     ];
 
     textureProperties.forEach((prop) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (prop in material && (material as any)[prop]) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.optimizeTexture((material as any)[prop], settings);
       }
     });
