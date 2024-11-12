@@ -13,7 +13,7 @@ export class DynamicColors {
       .map((_, i) => i * (360 / count));
     this.speeds = Array(count)
       .fill(0)
-      .map(() => Math.random() * 0.1 + 0.05);
+      .map(() => Math.random() * 1.5 + 0.1);
     this.updateColors(0);
   }
 

@@ -52,17 +52,12 @@ export class PostProcessing {
     this.composer.addPass(renderPass);
 
     // Bloom effect с оптимизированными настройками
-    this.bloomPass = new UnrealBloomPass(
-      new THREE.Vector2(window.innerWidth * 0.75, window.innerHeight * 0.75),
-      1.5,
-      0.4,
-      0.85
-    );
+    this.bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.0, 0.4, 1.0);
     this.bloomPass.renderToScreen = false;
     this.composer.addPass(this.bloomPass);
 
     // Film grain effect - инициализация с базовыми параметрами
-    this.filmPass = new FilmPass(0.35, false) as TypedFilmPass;
+    this.filmPass = new FilmPass(0.0, false) as TypedFilmPass;
 
     // // Установка дополнительных параметров через униформы
     // if (this.filmPass.uniforms) {
@@ -144,9 +139,9 @@ export class PostProcessing {
     }
   }
 
-  public toggleAntiAliasing(mode: 'none' | 'FXAA' | 'SMAA'): void {
+  public toggleAntiAliasing(mode: 'none' | 'SMAA'): void {
     if (this.fxaaPass && this.smaaPass) {
-      this.fxaaPass.enabled = mode === 'FXAA';
+      // this.fxaaPass.enabled = mode === 'FXAA';
       this.smaaPass.enabled = mode === 'SMAA';
     }
   }
@@ -154,8 +149,8 @@ export class PostProcessing {
   public resize(width: number, height: number): void {
     if (!this.composer) return;
 
-    const w = width * 0.75;
-    const h = height * 0.75;
+    const w = width;
+    const h = height;
 
     this.composer.setSize(w, h);
 

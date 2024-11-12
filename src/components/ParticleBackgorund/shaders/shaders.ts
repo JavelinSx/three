@@ -21,7 +21,7 @@ export const vertexShader = `
     vec3 direction = sourcePos - particlePos;
     float distance = length(direction);
     float gravityRadius = 1.0;
-    float gravityStrength = 0.1;
+    float gravityStrength = 0.2;
     
     if (distance < gravityRadius) {
       float force = (1.0 - distance / gravityRadius);

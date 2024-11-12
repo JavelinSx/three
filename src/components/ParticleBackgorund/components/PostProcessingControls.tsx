@@ -8,7 +8,7 @@ interface PostProcessingControlsProps {
 
 export default function PostProcessingControls({ postProcessing }: PostProcessingControlsProps) {
   const [showControls, setShowControls] = useState(false);
-
+  postProcessing.toggleAntiAliasing('none');
   return (
     <div className='fixed top-4 right-4 bg-black/50 p-4 rounded text-white z-50'>
       <button
@@ -105,12 +105,11 @@ export default function PostProcessingControls({ postProcessing }: PostProcessin
           <div className='space-y-2'>
             <h3 className='font-semibold'>Anti-aliasing</h3>
             <select
-              onChange={(e) => postProcessing.toggleAntiAliasing(e.target.value as 'none' | 'FXAA' | 'SMAA')}
+              onChange={(e) => postProcessing.toggleAntiAliasing(e.target.value as 'none' | 'SMAA')}
               className='w-full bg-white/10 px-2 py-1 rounded'
-              defaultValue='FXAA'
+              defaultValue='none'
             >
               <option value='none'>None</option>
-              <option value='FXAA'>FXAA</option>
               <option value='SMAA'>SMAA</option>
             </select>
           </div>
